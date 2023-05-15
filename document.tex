@@ -1,0 +1,780 @@
+\documentclass[journal=jacsat,manuscript=suppinfo]{achemso}
+%\documentclass{article}
+
+\setkeys{acs}{articletitle=true}
+
+%\makeatletter
+%\def\acs@maketitle@suppinfo{%
+	%\ifx\acs@manuscript\acs@manuscript@suppinfo
+	%Electronic Supplementary Information:\\
+	%\fi
+	%}
+%\makeatother
+
+
+\SectionNumbersOn
+
+\usepackage[sc]{mathpazo} % Use the Palatino font
+\linespread{1.05} % Line spacing - Palatino needs more space between lines
+
+\usepackage[parfill]{parskip}% begin paragraphs w/empty line (no indent)
+\setlength{\parskip}{0.75em}
+%\setlength{\parindent}{0.5em}
+
+\usepackage{sectsty}
+\allsectionsfont{\sffamily}
+
+\usepackage{titlesec}
+\titlelabel{\thetitle.~}
+
+%\usepackage{abstract}
+%\renewcommand{\abstractnamefont}{\bfseries\sffamily}
+
+\usepackage[labelfont=bf]{caption} % Custom captions under/above floats in tables or figures
+\usepackage[usenames]{xcolor}
+%\usepackage[colorlinks,citecolor=blue,linkcolor=blue,urlcolor=blue,bookmarks=false,hypertexnames=true]{hyperref} 
+\usepackage[hidelinks]{hyperref}
+
+\usepackage{amssymb,amsmath,mathtools}
+\usepackage{graphicx,setspace}
+\usepackage{microtype}
+
+%\usepackage{balance}
+\usepackage[capitalise]{cleveref}
+\usepackage{xspace}
+
+\usepackage{blindtext}
+
+\usepackage{enumitem}% customized itemize, enumerate
+\usepackage[section]{placeins}% place floats within their section
+
+%\renewcommand{\theequation}{S\arabic{equation}}
+
+\usepackage{nccmath}
+
+
+\usepackage[labelfont=bf,font=small]{caption}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{xr}% include labels from ext file
+\makeatletter
+\newcommand*{\addFileDependency}[1]{% argument=file name and extension
+	\typeout{(#1)}
+	\@addtofilelist{#1}
+	\IfFileExists{#1}{}{\typeout{No file #1.}}
+}
+\makeatother
+
+\newcommand*{\myexternaldocument}[1]{%
+	\externaldocument{#1}%
+	\addFileDependency{#1.tex}%
+	\addFileDependency{#1.aux}%
+}
+
+%\myexternaldocument{nanogel}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\addcite}[1][]{\def\tst{#1}\ifx\tst\empty\textcolor{red}{[{\footnotesize REFs}]} \else\textcolor{red}{[{\footnotesize REFs: #1}]} \fi}
+
+\newcommand{\pH}{\ensuremath{\text{pH}}\xspace}
+\newcommand{\pKa}{\ensuremath{\text{pKa}}\xspace}
+\newcommand{\salt}{\ensuremath{[salt]}\xspace}
+\newcommand{\cs}{\ensuremath{[\text{KCl}]}\xspace}
+\newcommand{\mM}{\ensuremath{\,\text{mM}}\xspace}
+\newcommand{\M}{\ensuremath{\,\text{M}}\xspace}
+\newcommand{\celcius}{\ensuremath{\,^\circ C}\xspace}
+\newcommand{\Tpt}{\ensuremath{T_{PT}}\xspace}
+
+\newcommand{\rojo}{\color{red}}
+\newcommand{\azul}{\color{blue}}
+
+\newcommand{\con}[1]{\ensuremath{[#1]}\xspace}
+
+\newcommand{\supp}{SI\xspace} %%% ACS
+\newcommand{\Lsupp}{Supporting Information\xspace}
+
+
+\AtBeginDocument
+{%
+	\renewcommand*{\citenumfont}[1]{#1}%
+	\renewcommand*{\bibnumfmt}[1]{(#1)}%
+}
+
+%\renewcommand*{\thepage}{\{roman}}
+\pagenumbering{arabic}
+
+%%%%%%%%%%
+
+%\newcommand{\bibfile}{gel-bi}
+%\usepackage[sort&compress,numbers]{natbib}
+%\usepackage{natbib}
+%\bibliographystyle{plain}
+
+\graphicspath{graphs_SI/} % path for graphs
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\author{Nestor A. P\'erez-Ch\'avez}
+
+\author{Alberto G. Albesa}
+
+\author{Gabriel S. Longo}
+
+\email{longogs@inifta.unlp.edu.ar}
+\affiliation[INIFTA]
+{Instituto de Investigaciones Fisicoqu\'imicas, Te\'oricas y Aplicadas (INIFTA), UNLP-CONICET, La Plata, Argentina}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title[]
+{Investigating the Impact of Network Functionalization on Protein Adsorption to Polymer Nanogels}
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+\begin{document}
+
+
+\tableofcontents
+%\newpage
+
+\section{Theoretical Method}
+
+\subsection{Molecular Theory}\label{sec:si:TM}
+In this section, we describe the molecular theory used in this work.
+The same formalism can be applied to various different systems. 
+Here we are particularly interested in  its is application to describe the adsorption of some proteins of interest to nanogels  made of copolymer chains of ionizable and hydrophilic monomers.
+
+The system under study is a single nanogel in equilibrium with an aqueous solution having externally defined bulk composition.
+The pH, salt concentration and protein concentration of this solution are the independent variables.
+The polymer network that gives structure to the nanogel  contains two types of segments: a pH-sensitive unit, either acidic (MAA) or basic (AH), and a neutral segment (VA); 
+crosslinks are described as charge neutral segments.
+
+The semi-grand potential of our system contains the following contributions:
+\begin{align}
+	\begin{aligned}
+		\Omega_{NG}=& -TS_{mix} -TS_{conf,nw} + F_{chem,nw} + F_{chem,pro}\\
+		& + U_{elec} + U_{ste} + U_{vdw} - \sum_{\gamma}{\mu_\gamma N_\gamma} - \mu_{pro} N_{pro}
+		\label{eq:free-energy_si}
+	\end{aligned}
+\end{align}
+
+Next, we will provide the explicit form of each of these terms for the particular case where  methacrylic acid (MAA) is the protonable segment.
+However the same or analogous expressions apply for networks having  basic segments.
+
+In \cref{eq:free-energy_si}, the translational and mixing entropy of the mobile species (including the protein) is
+
+\begin{align}
+	\begin{aligned}
+		\frac{S_{mix}}{k_B}= &-\sum_{\gamma}\int_0^\infty{dr G(r)\rho_\gamma(r)\left(\ln \left(\rho_\gamma (r)v_w\right) -1 + \beta\mu^0_\gamma\right)} \\
+		&- \sum_{\theta}\int_0^\infty{dr G(r)\rho_{pro}(\theta,r)\left(\ln \left(\rho_{pro}(\theta,r)v_w\right) -1 + \beta\mu^0_{pro} \right)}
+	\end{aligned}\label{eq:Smix_si}
+\end{align}
+
+\noindent where $\beta = \frac{1}{k_BT}$, $k_B$ is the Boltzmann constant, $v_w$ is the volume of a water molecule, and $T$ is the temperature of the system.
+Radial coordinate $r$ measures the distance from the center of mass of the polymer network.
+$\rho_\gamma(r)$ and $\mu_\gamma$ are respectively the local number density and the chemical potential of free species $\gamma$, where  
+subindex $\gamma$ runs over water molecules and its ions (hydronium and hydroxyde), and the salt dissociated ions ($Na^+$, $Cl^-$).
+$G(r)=4\pi r^2$ is the surface area of the sphere of radius $r$, which results from integrating out the angular component of the volume element when incorporating the radial symmetry of our problem.
+
+
+
+The entropy of mixing, \cref{eq:Smix_si}, also includes contributions for the protein.
+$\mu^0_{pro}$ is the standard chemical potential of the protein.
+$\rho_{pro}(\theta,r)$ is the local density of the protein in conformation $\theta$.
+These conformations also include spatial rotations.
+Then, the total local density of proteins is:
+
+\begin{align}
+	\left<\rho_{pro}(r)\right> = \sum_\theta{\rho_{pro}(\theta,r)}
+\end{align}
+
+$S_{conf,nw}$ in \cref{eq:free-energy_si} represents the conformational entropy that results from the flexibility of the polymer network, which can assume many different conformations denoted by the set $\{\alpha\}$. 
+\begin{equation}
+	\frac{S_{conf,nw}}{k_B} = - \sum_{\alpha}{P(\alpha)\ln P(\alpha)}
+\end{equation}
+
+\noindent where $P(\alpha)$ denotes the probability that the nanogel network is in the configuration $\alpha$.
+A network conformation is specified by the position of all its segments.
+The volume fraction of these segments can be expressed as
+
+
+
+\begin{align}
+	\left< \phi_i(r)\right> = \sum_\alpha{P(\alpha)\phi_i(\alpha,r)}
+\end{align}
+
+\noindent  Subscript $i$ indicate the segment type ($i = MAA/VA/crosslink$), and angle brackets denote an ensemble average over network conformations. 
+$\phi_i(\alpha,r)$ is an input quantity that gives the local volume fraction occupied by $i$-type segments at $r$, when the network is in conformation $\alpha$.
+
+
+
+
+
+The next term in \cref{eq:free-energy_si} describes the free energy of the acid-base equilibrium.
+For $MAA$ segments:
+\begin{align}
+	\begin{aligned}
+		\beta F_{chem,nw} &= \int_0^\infty drG(r) \frac{\left<\phi_{MAA}(r)\right>}{v_{MAA}} \left[f(r)(\ln f(r)+ \beta\mu^0_{MAA^-})\right.\\
+		&\hspace{11em}\left.+(1-f(r))(\ln (1-f(r))+\beta\mu^0_{MAAH})\right]    
+	\end{aligned}
+\end{align} 
+
+
+\noindent where $f(r)$ is the degree of charge of $MAA$ segments when they occupy  the spherical shell between $r$ and $r + dr$. 
+$\mu^0_{MAA^-}$ and $\mu^0_{MAAH}$ are the standard chemical potentials of the deprotonated and protonated species respectively. $v_{MAA}$ is the molecular volume of the $MAA$ segment.
+
+
+
+%%%%%%%%%%%%%%%%%%%
+Similarly, the chemical equilibrium of titratable units of the protein is accounted for in the following free energy term:
+
+\begin{align}
+	\begin{aligned}
+		\beta F_{chem,pro} =\int_0^\infty dr &G(r) \sum_\tau \left<\rho_{pro,\tau}(r)\right> \left[g_\tau(r)(\ln g_\tau(r)+ \beta\mu^0_{\tau p})\right.\\
+		&\hspace{8em}\left.+(1-g_\tau(r))(\ln (1-g_\tau(r))+\beta\mu^0_{\tau d})\right]   
+		\label{eq:Fchempro_si}
+	\end{aligned}
+\end{align} 
+
+\noindent where $\left<\rho_{pro,\tau}(r)\right>$ represents the local average density of protonable $\tau$ segments of the protein, which can be calculated using
+
+\begin{align}
+	\left<\rho_{pro,\tau}(r)\right> = \sum_\theta \int_o^\infty dr^\prime G(r^\prime) \rho_{pro}(\theta,r^\prime)n_\tau(\theta,r^\prime,r)
+	\label{eq:segments_pro_si}
+\end{align}
+
+\noindent where $n_\tau(\theta,r^\prime,r)$ is an input quantity that gives the number $\tau$ segments that a single protein in configuration $\theta$ and center of mass of at $r^\prime$   places inside the spherical shell between $r$ and $r+dr$. 
+Note subscript $\tau$ denotes titratable units/residues of the protein, but this last expression also holds true for all protein segments.
+Namely,
+
+\begin{align}
+	\left<\rho_{pro,\lambda}(r)\right> = \sum_\theta \int_o^\infty dr^\prime G(r^\prime) \rho_{pro}(\theta,r^\prime)n_\lambda(\theta,r^\prime,r)
+	%  \label{eq:segments_pro_si}
+\end{align}
+
+\noindent where $\lambda$ describes an arbitrary segment of the protein ($\{\tau\}\in\{\lambda\}$).
+
+
+
+$\mu^0_{\tau,p}$ and $\mu^0_{\tau,d}$ in \cref{eq:Fchempro_si} are the standard chemical potentials of the protonated and deprotonated $\tau$ segment respectively.
+%$p$ and $d$ are protonated and deprotonated states respectively.
+In addition, $g_\tau(r)$ is the local degree of proton association of $\tau$ segments.
+If $f_\tau(r)$ is the local degree of charge for the segment, it follows that: 
+\begin{itemize}
+	\item $g_\tau(r) = 1-f_\tau(r)$ for an acid $\tau$ unit that becomes negatively charged.
+	\item  $g_\tau(r) = f_\tau(r)$ for a basic $\tau$ unit that becomes positively charged.
+\end{itemize}
+
+%%%%%%%%%%
+
+Next contribution to $\Omega_{NG}$ is the electrostatic  energy:
+\begin{align}
+	\begin{aligned}
+		\beta U_{elecc}& = \int_0^\infty drG(r)\left[\left(\sum_{\gamma } \rho_\gamma(r) q_\gamma + \sum_\tau{f_\tau(r) \left<\rho_{pro,\tau}(r)\right> q_\tau}  \right. \right.\\ &\hspace{8em} \left. \left. + f(r)\dfrac{\left<\phi_{MAA}(r)\right>}{v_{MAA}}q_{MAA}\right)\beta\Psi(r) -\frac{1}{2}\beta\epsilon(\nabla\Psi(r))^2 \right]
+	\end{aligned}
+\end{align} 
+
+\noindent where $\Psi(r)$ is the position-dependent electrostatic potential, and $\epsilon$ the medium permittivity; 
+$q_\gamma$ is the charge of  mobile species $\gamma$, $q_\tau$ corresponds to the charge of the titratable segments of the adsorbate, and  $q_{MAA}$ is the charge of a deprotonated $MAA$ segment.
+
+In this context, the average (local) electric charge density is:
+\begin{align}
+	\left<\rho_q(r)\right> = \sum_{\gamma } {\rho_\gamma(r) q_\gamma + \sum_\tau{f_\tau(r) \left<\rho_{pro,\tau}(r)\right> q_\tau} +  f(r)\dfrac{\left<\phi_{MAA}(r)\right>}{v_{MAA}}q_{MAA}}
+	\label{si:eq:rho_charge}
+\end{align}
+%%%%%%%%%%%%%%%%
+
+The next contribution to the semi-grand potential of \cref{eq:free-energy_si} is due to the steric repulsions, which are incorporated through a physical constraint, which requires that every element of volume is fully occupied by some of the molecular species.
+Namely, 
+\begin{align}
+	\begin{aligned}
+		\sum_{\gamma}\rho_\gamma(r) v_\gamma + \sum_\lambda{\left<\rho_{pro,\lambda}(r)\right>v_\lambda} + \sum_i{\left<\phi_i(r)\right>} = 1\hspace{2em} \forall r
+	\end{aligned}
+	\label{si:eq:constraint}
+\end{align}
+\noindent where $v_\lambda$ is the molecular volume of segment $\lambda$ of the protein.
+Again, we emphasize that subscript $\lambda$ considers all segments of the protein, including titratable  ($\tau$) and charge neutral residues.
+Subscript $i$ runs over  all types segments in the  polymer network.
+
+%%%%%%%%%%%%%%%
+
+
+
+$U_{vdw}$ is the total energetic contribution of the van der Waals interactions.
+In this work, we assume that all polymer segments and protein residues have a hydrophilic character.
+In other words, the interactions between different pairs of segments and the segment-solvent interactions are approximately the same.
+As a result, the net interaction energy represents an additive constant to the total free energy.
+
+
+
+The last contributions to the semi-grand potential of \cref{eq:free-energy_si} incorporate the fact that the nanogel is in chemical equilibrium with a bulk solution of controlled composition.
+These terms include the chemical potentials of mobile species:
+
+
+
+\begin{align}
+	\begin{aligned}
+		\mu_\gamma N_\gamma + \mu_{pro} N_{pro} &=\int_0^\infty drG(r)\left[\sum_{\gamma }{\rho_\gamma(r)\mu_\gamma}
+		+ \mu_{pro} \left<\rho_{pro}(r)\right> \right. \\
+		& \hspace{6em}\left. +\mu_{H^+}\left(\sum_{\tau}{g_\tau\left<\rho_{pro,\tau}(r)\right> } +(1-f(r))\dfrac{\left<\phi_{MAA}(r)\right>}{v_{MAA}}\right)\right]
+	\end{aligned}
+\end{align}
+
+\noindent where  $\mu_\gamma$ and $N_\gamma$ are respectively the chemical potential and  number of molecules of species $\gamma$.
+Similarly, $\mu_{pro}$ and $N_{pro}$ are the chemical potential and the total number of proteins.
+The additional terms coupled to $\mu_{H^+}$
+account for those protons that are bound to uncharged $MAA$ segments and those in protonated protein residues.
+
+
+
+
+%%%%%%%%%%
+Therefore, the explicit form of the semi-grand potential is
+
+%%%%%%%%%%%%
+\begin{align}
+	\begin{aligned}
+		\beta\Omega_{NG}=&  \sum_{\gamma}\int_0^\infty{dr G(r)\rho_\gamma(r)\left(\ln \left(\rho_\gamma (r)v_w\right) -1 + \beta\mu^0_\gamma\right)} \\
+		%
+		& +\sum_\theta \int_0^\infty{dr G(r)\rho_{pro}(r)\left(\ln (\rho_{pro}(\theta,r)v_w)-1 + \beta\mu^0_{pro} \right)} \\
+		%
+		& + \sum_{\alpha}{P(\alpha)\ln P(\alpha)} \\
+		%
+		& +\int_0^\infty drG(r) \frac{\left<\phi_{MAA}(r)\right>}{v_{MAA}} \left[f(r)(\ln f(r)+ \beta\mu^0_{MAA^-})\right.\\
+		&\qquad \qquad \qquad\qquad \qquad \quad \left.+(1-f(r))(\ln (1-f(r))+\beta\mu^0_{MAAH})\right] \\
+		%
+		& +\int_0^\infty drG(r)\sum_\tau \left<\rho_{pro,\tau}(r)\right> \left[g_\tau(r)(\ln g_\tau(r)+ \beta\mu^0_{\tau p})\right.\\
+		&\qquad\qquad \qquad\qquad \qquad \qquad\left.+(1-g_\tau(r))(\ln (1-g_\tau(r))+\beta\mu^0_{\tau d})\right] \\
+		%
+		%
+		& +  \int_0^\infty drG(r)\left[\left(\sum_{\gamma } \rho_\gamma(r) q_\gamma + \sum_\tau{f_\tau(r) \left<\rho_{pro,\tau}(r)\right> q_\tau} \right. \right. \\ 
+		%
+		& \left. \left. \hspace{8em}+  f(r)\dfrac{\left<\phi_{MAA}(r)\right>}{v_{MAA}}q_{MAA}\right)\beta\Psi(r)  -\frac{1}{2}\beta\epsilon(\nabla\Psi(r))^2 \right]\\
+		%
+		%
+		&+ \int_0^\infty drG(r)  \beta\Pi(r){\left(\sum_{\gamma}\rho_\gamma(r) v_\gamma + \sum_{\lambda}{\left<\rho_{pro,\lambda}(r)\right>}{v_\lambda} + \sum_i\left<\phi_i(r)\right> -1\right)}\\
+		%
+		& -\int_0^\infty drG(r)\left[\sum_{\gamma }{\rho_\gamma(r)\beta\mu_\gamma}
+		+ \beta\mu_{pro} \left<\rho_{pro}(r)\right>
+		+\beta\mu_{H^+}\sum_{\tau}{g_\tau(r)\left<\rho_{pro,\tau}(r)\right> } \right.\\
+		& \left. \hspace{6em} +\beta\mu_{H^+}(1-f(r))\dfrac{\left<\phi_{MAA}(r)\right>}{v_{MAA}}\right]%\\
+	\end{aligned}
+	\label{eq:si:free-energy_expl}
+\end{align}
+
+In this last expression, the Lagrange multiplier $\Pi(r)$ has been introduced to reinforce the incompresibility constraint, \cref{si:eq:constraint}.
+
+
+In \cref{eq:si:free-energy_expl} the thermodynamic potential has been expressed in terms of several functions:
+%
+\begin{itemize}
+	\item the local densities, $\rho_\gamma(r)$ and $\rho_{pro}(r)$;
+	\item the probabilities of the different conformations of the polymer network, $P(\alpha)$;
+	\item the electrostatic potential, $\Psi(r)$;
+	\item the local degree of dissociation of protonable MAA segments, $f(r)$;
+	\item the local degrees of charge of protonable protein residues, $f_\tau(r)$, or alternatively their degrees of protonation,  $g_\tau(r)$.
+\end{itemize}
+%
+%In other words, we can write:
+%
+%\begin{align}
+%    \Omega_{NG}=\sum_{\alpha} P(\alpha)  \int{G(r) dr}~ \omega 
+%\end{align}
+%
+%where $\omega= \omega\left[\rho_\gamma(r), \rho_{pro}(r),\Psi(r),f(r),f_\tau(r), P(\alpha)\right]$ is a functional of the aforementioned quantities.
+
+
+
+%Minimization of $\beta\Omega_{NG}$ (or the functional) with respect to each of these functions yields expressions for such quantities.
+Minimization of $\beta\Omega_{NG}$ with respect to each of these functions yields expressions for such quantities.
+In particular, for the degree of charge of MAA segments in the polymer network, we calculate:
+
+
+
+\begin{align}
+	\frac{f(r)}{1-f(r)}= \frac{K^0_{MAA}}{a_{H^+}}e^{-\beta \Psi(r) q_{MAA}}
+	\label{eq:si:fMAA-degree}
+\end{align}
+
+Similarly, for the degree of charge of titratable units of the protein:
+
+\begin{align}
+	\frac{f_\tau(r)}{1-f_\tau(r)}= \left(\frac{a_{H^+}}{K^0_{\tau}}\right)^{\mp 1} e^{-\beta \Psi(r) q_{\tau}} 
+	\label{eq:si:ftau-degree}
+\end{align}
+
+
+
+\noindent where the $+$/$-$ sign corresponds to a basic/acid unit.
+In the previous expressions, $a_{H^+}=e^{\beta\Delta\mu_{H^+}}=e^{\beta(\mu_{H^+} -\mu^0_{H^+})}$ is the activity of protons.
+$K^0_{MAA}$ and $K^0_{\tau}$ are the thermodynamic equilibrium  constant of  acid-base reactions of MAA and $\tau$ segments, respectively, which satisfy:
+
+
+
+\begin{align}
+	%\begin{aligned}
+	K_{MAA}^0&=\exp\left(\beta\mu_{MAAH}^0 - \beta \mu_{MAA^-}^0 - \beta \mu^0_{H^+} \right) \\
+	K_{\tau}^0&=\exp\left(\beta\mu_{\tau p}^0 - \beta \mu_{\tau d}^0 - \beta \mu^0_{H^+} \right)
+	%\end{aligned}
+\end{align}
+
+
+
+
+
+
+%\begin{align}
+%\begin{aligned}
+%    & \left[HA\right] \Longleftrightarrow [H^+] +[A^-] \\
+%    & k_{a,HA}^0=\frac{[H^+][A^-]}{[HA]} \\
+%    & k_{a,HA}^0=\exp\left(\beta\mu_{HA}^0 - \beta \mu_{A^-}^0 - \beta \mu^0_{H^+} \right)
+%\end{aligned}
+%\label{eq:si:dis_rxn}
+%\end{align}
+
+
+
+
+%%%%%%%%%%%%%%%
+%In general for a segment $\iota$ we have: $ %k_{a,\iota}^0=\exp\left(\beta\mu_{\iota,p}^0 - \beta \mu_{\iota, d}^0 - \beta %\mu^0_{H^+} \right)$, in which $\iota, p$ and $\iota, d$
+%represent de protonable and deprotonable state of the segment $\iota$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Optimization of $\Omega_{NG}$ with respect to the density of the small mobile species, leads to
+
+\begin{align}
+	\rho_\gamma(r)v_w = a_\gamma \exp{\left(-\beta \Psi(r)q_\gamma\right)} \exp{\left(-\beta\Pi(r) v_w\right)}
+	\label{eq:si:rho-gamma}
+\end{align}
+
+%For the degree of association of titratable units of proteins, we obtain:
+
+% \begin{align}
+	%\begin{aligned}
+	%     &\frac{g_\tau(r)}{1-g_\tau(r)}= \frac{K^0_{a,\tau}}{a_{H^+}} e^{+\beta q_{\tau}\psi(r)} && acid \, case\\
+	%      & \frac{g_\tau(r)}{1-g_\tau(r)}= \frac{K^0_{a,\tau}}{a_{H^+}} e^{-\beta q_{\tau}\psi(r)} && basic \, case
+	%\end{aligned}
+	%\end{align}
+	
+	
+	Similarly, for the density of the protein we obtain:
+	
+	
+	
+	\begin{align}
+		\begin{aligned}
+			\rho_{pro}(\theta, r)v_w = & \tilde{a}_{pro} \prod_\tau \exp\left[ -\int_0^\infty dr^\prime G(r^\prime) n_\tau(\theta,r,r^\prime) \ln f_\tau(r^\prime)\right] \\
+			& \times \prod_\lambda \exp\left[ -\int_0^\infty dr^\prime G(r^\prime) n_\lambda(\theta,r,r^\prime)\left( \beta\psi(r^\prime) q_\lambda + \beta \Pi(r^\prime) v_\lambda \right)\right]
+		\end{aligned}
+		\label{eq:si:rho-pro}
+	\end{align}
+	
+	\noindent where the activity of the protein is
+	
+	\begin{align}
+		\tilde{a}_{pro} = \exp[\beta\mu_{pro} - \beta\tilde{\mu}^0_{pro}]
+	\end{align}
+	
+	with:
+	
+	\begin{align}
+		\beta\tilde{\mu}^0_{pro} =  \beta \mu^0_{pro}  + \sum_{\tau,a} C_{n,\tau}\beta\mu^0_{\tau,d} 
+		+ \sum_{\tau,b} C_{n,\tau}\beta(\mu_{H^+} - \mu^0_{\tau,p})
+	\end{align}
+	
+	
+	\noindent $\tau,a$ and $\tau,b$ indicate sums over acid or basic segments respectively.
+	The composition number for a segment $\lambda$ in the protein is $C_{n,\lambda}$:
+	\begin{align}
+		\int_0^\infty dr^\prime G(r^\prime) n_\lambda(\theta,r,r^\prime) = C_{n,\lambda}\quad \forall \, r
+		\label{si:eq:composition}
+	\end{align}
+	
+	
+	Optimization with respect to the probability of a configuration $\alpha$ of the polymer network  results in
+	
+	\begin{align}
+		\begin{aligned}
+			P(\alpha)&=\frac{1}{Q}\exp\left[- \sum_i{\int_0^\infty{drG(r)\beta\Pi(r)\phi_i(\alpha,r)}}\right] \\
+			& \times \exp\left[\int_0^\infty{ drG(r)\ln(1-f(r))\frac{\phi(\alpha,r)}{v_{MAA}}}\right] \\
+		\end{aligned}
+		\label{eq:si:proba-alfa}
+	\end{align}
+	
+	\noindent Where $Q$ is a constant that ensures $\sum_\alpha P(\alpha) = 1$.
+	
+	The variation of $\Omega_{NG}$ with respect to the electrostatic potential results in the Poisson equation:
+	
+	\begin{align}
+		\epsilon\nabla^2\Psi(r) = -\left<\rho_q(r)\right>
+		%\label{si:eq:poisson}
+	\end{align}
+	
+	Considering the symmetries of our problem:
+	
+	\begin{align}
+		\epsilon ~ \frac{1}{r^2} \frac{\partial}{\partial r}\left(\frac{\partial \Psi(r)}{\partial r}\right) = -\left<\rho_q(r)\right>
+		\label{si:eq:poisson}
+	\end{align}
+	
+	Another physical constraint to take into account at this point is the electroneutrality of the system, which is:
+	\begin{align}
+		\int_0^\infty{drG(r) \left<\rho_q(r)\right>} = 0
+	\end{align}
+	
+	This constraint is satisfied by imposing  the appropriate boundary condition to when solving \cref{si:eq:poisson}. 
+	These boundary condition are:
+	\begin{align}
+		%\begin{aligned}
+		&  \lim_{r\to\infty}\Psi(r) = 0 \\
+		&  \left.\frac{d\Psi(r)}{dr}\right|_{r=0} = 0
+		\label{eq:si:contorno}
+		% \end{aligned}
+\end{align}
+
+
+Now all of the functions that compose the thermodynamic potential $\Omega_{NG}$ have now been expressed in terms of the local electrostatic potential $\Psi(r)$, the position-dependent osmotic pressure $\Pi(r)$, and some input quantities that include the activities of the free species.
+Given the salt concentration, the pH and the concentration of proteins in the bulk solution, all these activities can be calculated from imposing the incompressibility and charge neutrality constraint to such solution and using the equilibrium condition of water self-dissociation. 
+Then, the only remaining unknowns are  $\Psi(r)$  and  $\Pi(r)$ at each $r$.
+These local functions are calculated by numerically solving \cref{si:eq:constraint} and \cref{si:eq:poisson}  at each shell $r$.
+
+
+
+\subsection{Bulk solution}
+
+The nanogel we study is in chemical equilibrium with a bulk solution.
+The chemical composition of this solution enters the theoretical framework described in the previous section through the activities of the free species. In this section, we derive expressions for those activities in terms of the chemical composition of bulk solution. 
+
+
+
+
+
+
+The bulk solution can be thought as taking the limit $r \rightarrow \infty$ in the expressions obtained in \cref{sec:si:TM}
+\begin{align}
+	%\begin{aligned}
+	& \Pi^b = \Pi(r \rightarrow \infty) \\
+	& \Psi^b=\Psi(r \rightarrow \infty) =  0 \\
+	& \rho^b_\gamma =\rho_\gamma (r \rightarrow \infty)  \\
+	& \rho^b_{pro}(\theta) = \rho_{pro}(\theta, r \rightarrow \infty) \\
+	& f_\tau^b = f_\tau(r \rightarrow \infty)
+	%\end{aligned}
+\end{align}
+
+
+
+
+
+Therefore, for bulk density of free species  $\gamma$ we derive:
+\begin{align}
+	\rho_\gamma^b v_w = a_\gamma e^{-\beta\Pi^bv_w}
+	\label{si:eq:free-bulk}
+\end{align}
+
+
+The  bulk density  of protein in its molecular conformation $\theta$ is:
+
+\begin{align}
+	\begin{aligned}
+		\rho^b_{pro}(\theta)v_w = &\tilde{a}_{pro} \prod_\tau\exp\left[-C_{n,\tau} \ln f^b_\tau\right] \\
+		&\prod_\lambda \exp \left[-C_{n,\lambda} (\beta\Pi^b v_\lambda + \beta\Psi^b q_\lambda ) \right]    
+	\end{aligned}
+	\label{si:eq:bulk-protein}
+\end{align}
+
+
+The total protein density in the bulk solution is
+
+\begin{align}
+	\left<\rho^b_{pro}\right> = \sum_{\theta}\rho^b_{pro}(\theta) 
+\end{align}
+
+while the bulk segment density can be expressed as
+
+
+\begin{align}
+	\left<\rho^b_{pro,\lambda}\right> =  \left<\rho^b_{pro}\right> C_{n,\lambda}
+	\label{eq:segments_pro_si}
+\end{align}
+
+
+
+
+
+
+Moreover, the bulk degree of dissociation  of $\tau$ segments of protein is:
+
+\begin{align}
+	\frac{f_\tau^b}{1-f_\tau^b} = \left(\frac{a_{H^+}}{K^0_{\tau}}\right)^{\mp 1}
+\end{align}
+
+
+
+
+
+
+
+In addition, the  incompressibility constraint must be applied to this bulk of the solution, which is:
+
+\begin{align}
+	\begin{aligned}
+		{\sum_{\gamma}\rho^b_\gamma v_\gamma + \sum_\lambda{\left<\rho^b_{pro,\lambda}\right>v_\lambda} } =1
+	\end{aligned}
+	\label{si:eq:bulk-constraint}
+\end{align}
+
+
+
+The bulk solution must  be charge-neutral,
+
+\begin{align}
+	\begin{aligned}
+		{\sum_{\gamma}\rho^b_\gamma q_\gamma + \sum_\tau{f_\tau^b \left<\rho^b_{pro,\tau}\right>q_\tau} } =0
+	\end{aligned}
+	\label{si:eq:bulk-electro}
+\end{align}
+
+
+
+
+
+
+The bulk densities are  input quantities  of each calculation.
+Once the pH, salt concentration and protein concentration are all set, these densities are completely determined using the incompressibility of the bath solution, \cref{si:eq:bulk-constraint} that provides $\Pi^b$; electroneutrality, \cref{si:eq:bulk-electro} that gives the relation between NaCl concentration, $\rho_{Cl^-}^b$ and $\rho_{Na^+}^b$;  and the equilibrium constant of water self-dissociation that gives the relation between pH, $\rho_{OH^-}^b$, $\rho_{H^+}^b$.
+
+
+
+
+
+
+
+
+\subsection{Numerical implementation}
+
+To obtain results from the molecular theory described in the previous sections, the system of nonlinear integro-differential equations 
+given by \cref{si:eq:constraint} and \cref{si:eq:poisson} must be 
+solved numerically.
+To achieve this, the volume of the system is divided into shells of thickness $\delta = 0.5\,$nm.
+In the expression presented in \cref{sec:si:TM} sums over shells replace integrals along the $r$-coordinate, while finite differences substitute derivatives. 
+
+
+Then, the incompressibility constraint of \cref{si:eq:constraint} can now be expressed as:
+
+
+\begin{align}
+	\begin{aligned}
+		{\sum_{\gamma}\rho_\gamma(i_r) v_\gamma + \sum_\lambda{\left<\rho_{pro,\lambda}(i_r)\right>v_\lambda} + \sum_i{\left<\phi_i(i_r)\right>}} =1
+		\label{si:eq:pi-ir}
+	\end{aligned}
+\end{align}
+
+which gives an equation for each shell $i_r$, whose position is described by the coordinate $r_i = (i_r -0.5)\delta$. 
+%For an arbitrary function of position $k(r_i)$, we simplify the notation using $k(i_r) \equiv k\left((i_r -0.5)\delta\right)$.
+The integer $i_r$ takes values from 1 to $n_r$, where $n_r$ is sufficiently large such that all densities of the free species as well as the electrostatic potential smoothly converge to the bulk solution values.
+Namely, 
+$\Pi(n_r) \approx \Pi^b$,
+$\Psi(n_r) \approx 0$,
+$\rho_\gamma(n_r) \approx \rho_\gamma^b$, and $\rho_{pro}(\theta,n_r) \approx \rho_{pro}^b(\theta)$, etc.
+
+
+With these considerations it is possible to rewrite the equations of the \cref{sec:si:TM} in the following  way.
+\Cref{eq:si:fMAA-degree,eq:si:ftau-degree} become:
+
+
+\begin{align}
+	\frac{f(i_r)}{1-f(i_r)}= \frac{K^0_{MAA}}{a_{H^+}}e^{-\beta \Psi(i_r) q_{MAA}}
+	%\label{eq:si:fMAA-degree}
+\end{align}
+
+
+\begin{align}
+	\frac{f_\tau(i_r)}{1-f_\tau(i_r)}= \left(\frac{a_{H^+}}{K^0_{\tau}}\right)^{\mp 1} e^{-\beta \Psi(i_r) q_{\tau}} = \frac{f_\tau^b}{1-f_\tau^b}e^{-\beta \Psi(i_r) q_{\tau}}
+	%\label{eq:si:ftau-degree}
+\end{align}
+
+
+
+
+For the discretized version of \cref{eq:si:rho-gamma} that gives the local density of small free species is
+
+\begin{align}
+	\rho_\gamma(i_r)v_w = a_\gamma \exp{\left(-\beta \Psi(i_r)q_\gamma\right)} \exp{\left(-\beta\Pi(i_r) v_w\right)}
+\end{align}
+
+
+
+while for the local protein density, \cref{eq:si:rho-pro} becomes
+
+
+
+\begin{align}
+	\begin{aligned}
+		\rho_{pro}(\theta, i_r)v_w = &\tilde{a}_{pro} \prod_\tau\exp\left[- \delta \sum^{n_r}_{j_r = 1} G(j_r) n_\tau(\theta,i_r,j_r) \ln f_\tau(j_r)\right] \\
+		& \hspace{1em} \times \prod_\lambda \exp \left[- \delta \sum^{n_r}_{j_r = 1} G(j_r) n_\lambda(\theta,i_r, j_r)\left(\beta\Pi(j_r) v_\lambda+ \beta \Psi(j_r)q_\lambda\right) \right]
+	\end{aligned}
+\end{align}
+
+
+
+
+The probability of a conformation $\{\alpha\}$ of the polymer network, \ref{eq:si:proba-alfa}, is also discretized to:
+
+\begin{align}
+	\begin{aligned}
+		P(\alpha)&=\frac{1}{Q}\exp\left[- \delta\sum_i{\sum_{i_r =1}^{n_r}{G(i_r)\beta\Pi(i_r)\phi_i(\alpha,i_r)}}\right] \\
+		&\hspace{2em} \exp\left[\delta\sum_{i_r =1}^{n_r}{G(i_r)\ln(1-f(i_r))\frac{\phi(\alpha,i_r)}{v_{MAA}}}\right]
+	\end{aligned}
+\end{align}
+
+Finally the Poisson equation:
+\begin{color}{red}
+	\verb|\cref{}| ... \ref{si:eq:poisson}
+\end{color}
+
+\begin{align}
+	\epsilon \frac{\Psi(i_r +1) -2 \Psi(i_r) + \Psi(i_r -1)}{\delta ^2} + 2\epsilon \frac{\Psi(i_r +1) -\Psi(i_r)}{(i_r -0.5)\delta ^2}= -\left<\rho_q(i_r)\right>
+	\label{si:eq:poisson-ir}
+\end{align}
+
+\noindent where the discrete local charge density is:
+\begin{color}{red}
+	\verb|\cref{}| ...\ref{si:eq:rho_charge}
+\end{color}
+
+\begin{align}
+	\left<\rho_q(i_r)\right> = \sum_{\gamma } {\rho_\gamma(i_r) q_\gamma + \sum_\tau{f_\tau(i_r) \left<\rho_{pro,\tau}(i_r)\right> q_\tau} +  f(i_r)\dfrac{\left<\phi_{MAA}(i_r)\right>}{v_{MAA}}q_{MAA}}
+\end{align}
+
+
+And the the boundary condition is:
+\begin{color}{red}
+	\verb|\cref{}| ... \ref{eq:si:contorno}
+\end{color}
+\begin{align}
+	\frac{\Psi(1) - \Psi(0)}{\delta} = 0
+\end{align}
+
+
+
+In general, given the pH bulk solution, salt concentration, and protein concentration, the
+unknowns remaining are $\Pi(i_r)$ and $\Psi(i_r)$ for each shell $i_r$. These quantities can be obtained solving the system of nonlinear coupled equations given by Eqs. (\ref{si:eq:pi-ir}) and (\ref{si:eq:poisson-ir}). The number of equations to be solved (and that of unknowns) is $2n_r$ the total number of shells. The number of terms in each equation is roughly of the same order of magnitude as the total number of molecular conformations (network and protein) included in the calculation. These equations are solved numerically using a Jacobian-Free Newton method.
+
+
+\end{document}
