@@ -256,18 +256,30 @@ Similarly, the chemical equilibrium of titratable units of the protein is accoun
 \noindent where $\left<\rho_{pro,\tau}(r)\right>$ represents the local average density of protonable $\tau$ segments of the protein, which can be calculated using
 
 \begin{align}
-	\left<\rho_{pro,\tau}(r)\right> = \sum_\theta \int_o^\infty dr^\prime G(r^\prime) \rho_{pro}(\theta,r^\prime)n_\tau(\theta,r^\prime,r)
+	\left<\rho_{pro,\tau}(r)\right> = \sum_\theta \int_o^\infty dr^\prime \frac{G(r^\prime)}{G(r)} \rho_{pro}(\theta,r^\prime)m_\tau(\theta,r^\prime,r)
 	\label{eq:segments_pro_si}
 \end{align}
 
-\noindent where $n_\tau(\theta,r^\prime,r)$ is an input quantity that gives the number $\tau$ segments that a single protein in configuration $\theta$ and center of mass of at $r^\prime$   places inside the spherical shell between $r$ and $r+dr$. 
-Note subscript $\tau$ denotes titratable units/residues of the protein, but this last expression also holds true for all protein segments.
+
+\noindent where $m_\tau(\theta,r^\prime,r)$ is defined as the density of segments between the spheres of radius $r$ and $r + dr$, the volume of integration of its is denoted as $VS_r$
+
+\begin{align}
+	m_\tau(\theta, r^\prime, r)dr = \int_{VS_r} n(\theta,\textbf{r}^\prime, \textbf{r})d^3\textbf{r}
+\end{align}
+
+\noindent  $\textbf{r}$ and $\textbf{r}^\prime$ denotes the position vector of the position $r$ and the center of mass $r^\prime$ respectively. The different configurations $\theta$ are such that $n(\theta,\textbf{r}^\prime, \textbf{r})$ remains constant throughout the solid angles.
+
+ finally $ n(\theta,\textbf{r}^\prime, \textbf{r})$ is an input quantity that gives the number $\tau$ segments that a single protein in configuration $\theta$ and center of mass of at $\textbf{r}^\prime$   places inside the spherical shell between $\textbf{r}$ and $\textbf{r}+d\textbf{r}$. 
+ 
+Note subscript $\tau$ denotes titratable units/residues of the protein, but this last expression(\cref{eq:segments_pro_si}) also holds true for all protein segments.
 Namely,
 
 \begin{align}
-	\left<\rho_{pro,\lambda}(r)\right> = \sum_\theta \int_o^\infty dr^\prime G(r^\prime) \rho_{pro}(\theta,r^\prime)n_\lambda(\theta,r^\prime,r)
-	%  \label{eq:segments_pro_si}
+	\left<\rho_{pro,\lambda}(r)\right> = \sum_\theta \int_o^\infty dr^\prime \frac{G(r^\prime)}{G(r)} \rho_{pro}(\theta,r^\prime)m_\lambda(\theta,r^\prime,r)
+	\label{eq:allsegments_pro_si}
 \end{align}
+
+
 
 \noindent where $\lambda$ describes an arbitrary segment of the protein ($\{\tau\}\in\{\lambda\}$).
 
@@ -480,8 +492,8 @@ Optimization of $\Omega_{NG}$ with respect to the density of the small mobile sp
 	
 	\begin{align}
 		\begin{aligned}
-			\rho_{pro}(\theta, r)v_w = & \tilde{a}_{pro} \prod_\tau \exp\left[ -\int_0^\infty dr^\prime G(r^\prime) n_\tau(\theta,r,r^\prime) \ln f_\tau(r^\prime)\right] \\
-			& \times \prod_\lambda \exp\left[ -\int_0^\infty dr^\prime G(r^\prime) n_\lambda(\theta,r,r^\prime)\left( \beta\psi(r^\prime) q_\lambda + \beta \Pi(r^\prime) v_\lambda \right)\right]
+			\rho_{pro}(\theta, r)v_w = & \tilde{a}_{pro} \prod_\tau \exp\left[ -\int_0^\infty dr^\prime  m_\tau(\theta,r,r^\prime) \ln f_\tau(r^\prime)\right] \\
+			& \times \prod_\lambda \exp\left[ -\int_0^\infty dr^\prime  m_\lambda(\theta,r,r^\prime)\left( \beta\psi(r^\prime) q_\lambda + \beta \Pi(r^\prime) v_\lambda \right)\right]
 		\end{aligned}
 		\label{eq:si:rho-pro}
 	\end{align}
@@ -503,7 +515,7 @@ Optimization of $\Omega_{NG}$ with respect to the density of the small mobile sp
 	\noindent $\tau,a$ and $\tau,b$ indicate sums over acid or basic segments respectively.
 	The composition number for a segment $\lambda$ in the protein is $C_{n,\lambda}$:
 	\begin{align}
-		\int_0^\infty dr^\prime G(r^\prime) n_\lambda(\theta,r,r^\prime) = C_{n,\lambda}\quad \forall \, r
+		\int_0^\infty dr^\prime  m_\lambda(\theta,r,r^\prime) = C_{n,\lambda}\quad \forall \, r
 		\label{si:eq:composition}
 	\end{align}
 	
@@ -726,12 +738,16 @@ while for the local protein density, \cref{eq:si:rho-pro} becomes
 
 \begin{align}
 	\begin{aligned}
-		\rho_{pro}(\theta, i_r)v_w = &\tilde{a}_{pro} \prod_\tau\exp\left[- \delta \sum^{n_r}_{j_r = 1} G(j_r) n_\tau(\theta,i_r,j_r) \ln f_\tau(j_r)\right] \\
-		& \hspace{1em} \times \prod_\lambda \exp \left[- \delta \sum^{n_r}_{j_r = 1} G(j_r) n_\lambda(\theta,i_r, j_r)\left(\beta\Pi(j_r) v_\lambda+ \beta \Psi(j_r)q_\lambda\right) \right]
+		\rho_{pro}(\theta, i_r)v_w = &\tilde{a}_{pro} \prod_\tau\exp\left[- \delta \sum^{n_r}_{j_r = 1} m_\tau(\theta,i_r,j_r) \ln f_\tau(j_r)\right] \\
+		& \hspace{1em} \times \prod_\lambda \exp \left[- \delta \sum^{n_r}_{j_r = 1} m_\lambda(\theta,i_r, j_r)\left(\beta\Pi(j_r) v_\lambda+ \beta \Psi(j_r)q_\lambda\right) \right]
 	\end{aligned}
 \end{align}
 
+\noindent in which:
 
+\begin{align}
+	m_\lambda(\theta,i_r,j_r) =\int_{r_j -\delta/2}^{r_j + \delta/2} dr n_\lambda(\theta, r_i, r) \approx  n_\lambda(\theta, r_i, r_j) \delta
+\end{align}
 
 
 The probability of a conformation $\{\alpha\}$ of the polymer network, \ref{eq:si:proba-alfa}, is also discretized to:
