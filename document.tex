@@ -738,15 +738,15 @@ while for the local protein density, \cref{eq:si:rho-pro} becomes
 
 \begin{align}
 	\begin{aligned}
-		\rho_{pro}(\theta, i_r)v_w = &\tilde{a}_{pro} \prod_\tau\exp\left[- \delta \sum^{n_r}_{j_r = 1} m_\tau(\theta,i_r,j_r) \ln f_\tau(j_r)\right] \\
-		& \hspace{1em} \times \prod_\lambda \exp \left[- \delta \sum^{n_r}_{j_r = 1} m_\lambda(\theta,i_r, j_r)\left(\beta\Pi(j_r) v_\lambda+ \beta \Psi(j_r)q_\lambda\right) \right]
+		\rho_{pro}(\theta, i_r)v_w = &\tilde{a}_{pro} \prod_\tau\exp\left[ \sum^{n_r}_{j_r = 1} \tilde{m}_\tau(\theta,i_r,j_r) \ln f_\tau(j_r)\right] \\
+		& \hspace{1em} \times \prod_\lambda \exp \left[ \sum^{n_r}_{j_r = 1} \tilde{m}_\lambda(\theta,i_r, j_r)\left(\beta\Pi(j_r) v_\lambda+ \beta \Psi(j_r)q_\lambda\right) \right]
 	\end{aligned}
 \end{align}
 
 \noindent in which:
 
 \begin{align}
-	m_\lambda(\theta,i_r,j_r) =\int_{r_j -\delta/2}^{r_j + \delta/2} dr n_\lambda(\theta, r_i, r) \approx  n_\lambda(\theta, r_i, r_j) \delta
+	\tilde{m}_\lambda(\theta,i_r,j_r) =\int_{r_j -\delta/2}^{r_j + \delta/2} dr \, m_\lambda(\theta, r_i, r) 
 \end{align}
 
 
