@@ -217,11 +217,17 @@ The volume fraction of these segments can be expressed as
 
 
 \begin{align}
-	\left< \phi_i(r)\right> = \sum_\alpha{P(\alpha)\phi_i(\alpha,r)}
+	\left< \phi^i(r)\right> = \sum_\alpha{P(\alpha)\phi^i_r(\alpha,r)} 
+\end{align}
+
+\noindent where $\frac{\phi^i_r(\alpha,r)}{v_i}$ is defined as the density of segments between the spheres of radius $r$ and $r + dr$, the volume of integration of its is denoted as $VS_r$
+
+\begin{align}
+\frac{\phi^i_r(\alpha,r)}{v_i} dr	=  \int_{VS_r} d^3\textbf{r}  \frac{\phi^i(\alpha,\textbf{r})}{v_i}
 \end{align}
 
 \noindent  Subscript $i$ indicate the segment type ($i = MAA/VA/crosslink$), and angle brackets denote an ensemble average over network conformations. 
-$\phi_i(\alpha,r)$ is an input quantity that gives the local volume fraction occupied by $i$-type segments at $r$, when the network is in conformation $\alpha$.
+$\phi_i(\alpha,\textbf{r})$  is an input quantity that gives the local volume fraction occupied by $i$-type segments at $\textbf{r}$, when the network is in conformation $\alpha$.
 
 
 
@@ -231,7 +237,7 @@ The next term in \cref{eq:free-energy_si} describes the free energy of the acid-
 For $MAA$ segments:
 \begin{align}
 	\begin{aligned}
-		\beta F_{chem,nw} &= \int_0^\infty drG(r) \frac{\left<\phi_{MAA}(r)\right>}{v_{MAA}} \left[f(r)(\ln f(r)+ \beta\mu^0_{MAA^-})\right.\\
+		\beta F_{chem,nw} &= \int_0^\infty drG(r) \frac{\left<\phi^{MAA}(r)\right>}{v_{MAA}} \left[f(r)(\ln f(r)+ \beta\mu^0_{MAA^-})\right.\\
 		&\hspace{11em}\left.+(1-f(r))(\ln (1-f(r))+\beta\mu^0_{MAAH})\right]    
 	\end{aligned}
 \end{align} 
@@ -299,7 +305,7 @@ If $f_\tau(r)$ is the local degree of charge for the segment, it follows that:
 Next contribution to $\Omega_{NG}$ is the electrostatic  energy:
 \begin{align}
 	\begin{aligned}
-		\beta U_{elecc}& = \int_0^\infty drG(r)\left[\left(\sum_{\gamma } \rho_\gamma(r) q_\gamma + \sum_\tau{f_\tau(r) \left<\rho_{pro,\tau}(r)\right> q_\tau}  \right. \right.\\ &\hspace{8em} \left. \left. + f(r)\dfrac{\left<\phi_{MAA}(r)\right>}{v_{MAA}}q_{MAA}\right)\beta\Psi(r) -\frac{1}{2}\beta\epsilon(\nabla\Psi(r))^2 \right]
+		\beta U_{elecc}& = \int_0^\infty drG(r)\left[\left(\sum_{\gamma } \rho_\gamma(r) q_\gamma + \sum_\tau{f_\tau(r) \left<\rho_{pro,\tau}(r)\right> q_\tau}  \right. \right.\\ &\hspace{8em} \left. \left. + f(r)\dfrac{\left<\phi^{MAA}(r)\right>}{v_{MAA}}q_{MAA}\right)\beta\Psi(r) -\frac{1}{2}\beta\epsilon(\nabla\Psi(r))^2 \right]
 	\end{aligned}
 \end{align} 
 
@@ -308,7 +314,7 @@ $q_\gamma$ is the charge of  mobile species $\gamma$, $q_\tau$ corresponds to th
 
 In this context, the average (local) electric charge density is:
 \begin{align}
-	\left<\rho_q(r)\right> = \sum_{\gamma } {\rho_\gamma(r) q_\gamma + \sum_\tau{f_\tau(r) \left<\rho_{pro,\tau}(r)\right> q_\tau} +  f(r)\dfrac{\left<\phi_{MAA}(r)\right>}{v_{MAA}}q_{MAA}}
+	\left<\rho_q(r)\right> = \sum_{\gamma } {\rho_\gamma(r) q_\gamma + \sum_\tau{f_\tau(r) \left<\rho_{pro,\tau}(r)\right> q_\tau} +  f(r)\dfrac{\left<\phi^{MAA}(r)\right>}{v_{MAA}}q_{MAA}}
 	\label{si:eq:rho_charge}
 \end{align}
 %%%%%%%%%%%%%%%%
@@ -317,7 +323,7 @@ The next contribution to the semi-grand potential of \cref{eq:free-energy_si} is
 Namely, 
 \begin{align}
 	\begin{aligned}
-		\sum_{\gamma}\rho_\gamma(r) v_\gamma + \sum_\lambda{\left<\rho_{pro,\lambda}(r)\right>v_\lambda} + \sum_i{\left<\phi_i(r)\right>} = 1\hspace{2em} \forall r
+		\sum_{\gamma}\rho_\gamma(r) v_\gamma + \sum_\lambda{\left<\rho_{pro,\lambda}(r)\right>v_\lambda} + \sum_i{\left<\phi^i(r)\right>} = 1\hspace{2em} \forall r
 	\end{aligned}
 	\label{si:eq:constraint}
 \end{align}
@@ -345,7 +351,7 @@ These terms include the chemical potentials of mobile species:
 	\begin{aligned}
 		\mu_\gamma N_\gamma + \mu_{pro} N_{pro} &=\int_0^\infty drG(r)\left[\sum_{\gamma }{\rho_\gamma(r)\mu_\gamma}
 		+ \mu_{pro} \left<\rho_{pro}(r)\right> \right. \\
-		& \hspace{6em}\left. +\mu_{H^+}\left(\sum_{\tau}{g_\tau\left<\rho_{pro,\tau}(r)\right> } +(1-f(r))\dfrac{\left<\phi_{MAA}(r)\right>}{v_{MAA}}\right)\right]
+		& \hspace{6em}\left. +\mu_{H^+}\left(\sum_{\tau}{g_\tau\left<\rho_{pro,\tau}(r)\right> } +(1-f(r))\dfrac{\left<\phi^{MAA}(r)\right>}{v_{MAA}}\right)\right]
 	\end{aligned}
 \end{align}
 
@@ -369,7 +375,7 @@ Therefore, the explicit form of the semi-grand potential is
 		%
 		& + \sum_{\alpha}{P(\alpha)\ln P(\alpha)} \\
 		%
-		& +\int_0^\infty drG(r) \frac{\left<\phi_{MAA}(r)\right>}{v_{MAA}} \left[f(r)(\ln f(r)+ \beta\mu^0_{MAA^-})\right.\\
+		& +\int_0^\infty drG(r) \frac{\left<\phi^{MAA}(r)\right>}{v_{MAA}} \left[f(r)(\ln f(r)+ \beta\mu^0_{MAA^-})\right.\\
 		&\qquad \qquad \qquad\qquad \qquad \quad \left.+(1-f(r))(\ln (1-f(r))+\beta\mu^0_{MAAH})\right] \\
 		%
 		& +\int_0^\infty drG(r)\sum_\tau \left<\rho_{pro,\tau}(r)\right> \left[g_\tau(r)(\ln g_\tau(r)+ \beta\mu^0_{\tau p})\right.\\
@@ -378,15 +384,15 @@ Therefore, the explicit form of the semi-grand potential is
 		%
 		& +  \int_0^\infty drG(r)\left[\left(\sum_{\gamma } \rho_\gamma(r) q_\gamma + \sum_\tau{f_\tau(r) \left<\rho_{pro,\tau}(r)\right> q_\tau} \right. \right. \\ 
 		%
-		& \left. \left. \hspace{8em}+  f(r)\dfrac{\left<\phi_{MAA}(r)\right>}{v_{MAA}}q_{MAA}\right)\beta\Psi(r)  -\frac{1}{2}\beta\epsilon(\nabla\Psi(r))^2 \right]\\
+		& \left. \left. \hspace{8em}+  f(r)\dfrac{\left<\phi^{MAA}(r)\right>}{v_{MAA}}q_{MAA}\right)\beta\Psi(r)  -\frac{1}{2}\beta\epsilon(\nabla\Psi(r))^2 \right]\\
 		%
 		%
-		&+ \int_0^\infty drG(r)  \beta\Pi(r){\left(\sum_{\gamma}\rho_\gamma(r) v_\gamma + \sum_{\lambda}{\left<\rho_{pro,\lambda}(r)\right>}{v_\lambda} + \sum_i\left<\phi_i(r)\right> -1\right)}\\
+		&+ \int_0^\infty drG(r)  \beta\Pi(r){\left(\sum_{\gamma}\rho_\gamma(r) v_\gamma + \sum_{\lambda}{\left<\rho_{pro,\lambda}(r)\right>}{v_\lambda} + \sum_i\left<\phi^i(r)\right> -1\right)}\\
 		%
 		& -\int_0^\infty drG(r)\left[\sum_{\gamma }{\rho_\gamma(r)\beta\mu_\gamma}
 		+ \beta\mu_{pro} \left<\rho_{pro}(r)\right>
 		+\beta\mu_{H^+}\sum_{\tau}{g_\tau(r)\left<\rho_{pro,\tau}(r)\right> } \right.\\
-		& \left. \hspace{6em} +\beta\mu_{H^+}(1-f(r))\dfrac{\left<\phi_{MAA}(r)\right>}{v_{MAA}}\right]%\\
+		& \left. \hspace{6em} +\beta\mu_{H^+}(1-f(r))\dfrac{\left<\phi^{MAA}(r)\right>}{v_{MAA}}\right]%\\
 	\end{aligned}
 	\label{eq:si:free-energy_expl}
 \end{align}
@@ -524,13 +530,14 @@ Optimization of $\Omega_{NG}$ with respect to the density of the small mobile sp
 	
 	\begin{align}
 		\begin{aligned}
-			P(\alpha)&=\frac{1}{Q}\exp\left[- \sum_i{\int_0^\infty{drG(r)\beta\Pi(r)\phi_i(\alpha,r)}}\right] \\
-			& \times \exp\left[\int_0^\infty{ drG(r)\ln(1-f(r))\frac{\phi(\alpha,r)}{v_{MAA}}}\right] \\
+			\tilde{p}(\alpha)&=\exp\left[- \sum_i{\int_0^\infty{dr\beta\Pi(r)\phi^i_r(\alpha,r)}}\right] \\
+			& \times \exp \left[ -\int_0^\infty dr \beta \Psi(r)\frac{\phi^{MAA}_r(\alpha,r)}{v_{MAA}} q_{MAA}  \right] \\
+			& \times \exp\left[ -\int_0^\infty{ dr\ln(f(r))\frac{\phi^{MAA}_r(\alpha,r)}{v_{MAA}}}\right] \\
 		\end{aligned}
 		\label{eq:si:proba-alfa}
 	\end{align}
 	
-	\noindent Where $Q$ is a constant that ensures $\sum_\alpha P(\alpha) = 1$.
+	\noindent Where $Q = \sum_\alpha {\tilde{p}(\alpha)}$. Q is a constant that ensures $\sum_\alpha P(\alpha) = 1$.
 	
 	The variation of $\Omega_{NG}$ with respect to the electrostatic potential results in the Poisson equation:
 	
@@ -754,9 +761,16 @@ The probability of a conformation $\{\alpha\}$ of the polymer network, \ref{eq:s
 
 \begin{align}
 	\begin{aligned}
-		P(\alpha)&=\frac{1}{Q}\exp\left[- \delta\sum_i{\sum_{i_r =1}^{n_r}{G(i_r)\beta\Pi(i_r)\phi_i(\alpha,i_r)}}\right] \\
-		&\hspace{2em} \exp\left[\delta\sum_{i_r =1}^{n_r}{G(i_r)\ln(1-f(i_r))\frac{\phi(\alpha,i_r)}{v_{MAA}}}\right]
+				\tilde{p}(\alpha)&= \prod_{r_j}\prod_i \exp\left[{- {\beta\Pi(r_j) \tilde{\phi}^i_r(\alpha,r_j)}}\right] \\
+	& \times \prod_{r_j} \exp \left[ - \beta \Psi(r_j)\frac{\tilde{ \phi}^{MAA}_r(\alpha,r_j)}{v_{MAA}} q_{MAA}  \right] \\
+	& \times \prod_{r_j} \exp\left[ - { \ln(f(r_j))\frac{\tilde{ \phi}^{MAA}_r(\alpha,r_j)}{v_{MAA}}}\right] \\
 	\end{aligned}
+\end{align}
+
+\noindent where:
+
+\begin{align}
+	\tilde{ \phi}^{MAA}_r(\alpha,r_j) = \int_{r_j -\delta/2}^{r_j + \delta/2} dr \, \phi^{MAA}_r(\alpha,r_j)
 \end{align}
 
 Finally the Poisson equation:
